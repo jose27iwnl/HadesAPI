@@ -22,11 +22,11 @@ router.get('', function(req, res, next) {
                 })
             } else if (req.query['email'] !== rows[0]['email']) {
                 res.json({
-                    'error': 'Este email não existe'
+                    error: 'Este email não existe'
                 });
             } else {
                 res.json({
-                    'error': 'Os dados estão incorretos'
+                    error: 'Os dados estão incorretos'
                 });
             }
         }); // query

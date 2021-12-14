@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
         'id': rows[0]['ID'],
         'email': rows[0]['Email']
       });
-
     });
   });
 });

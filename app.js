@@ -6,6 +6,7 @@ const cors = require('cors');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const breakdownsRouter = require('./routes/breakdowns');
+const roomsRouter = require('./routes/rooms');
 
 const app = express();
 
@@ -18,5 +19,7 @@ app.use(cookieParser());
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/breakdowns', breakdownsRouter);
+app.use('/rooms', roomsRouter);
+
 
 module.exports = app;
