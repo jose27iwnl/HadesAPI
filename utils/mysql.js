@@ -7,8 +7,8 @@ const pool = mysql.createPool({
     database: 'hermes'
 });
 
-const getConnection = function (callback) {
-    pool.getConnection(function (err, connection) {
+const getConnection = function(callback) {
+    pool.getConnection(function(err, connection) {
         callback(err, connection);
         connection.release();
     });
