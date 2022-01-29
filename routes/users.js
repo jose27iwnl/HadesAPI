@@ -13,14 +13,11 @@ router.get('/', function(req, res, next) {
           'id': rows[0]['ID'],
           'email': rows[0]['Email']
         });
-
       });
     });
 });
 
 router.put('', async function (req, res, next) {
-
-
   let email = req.body['email'];
   let username = req.body['username'];
   let password = req.body['password'];
@@ -58,6 +55,7 @@ router.put('', async function (req, res, next) {
   getConnection(function (err, conn) {
     conn.query("SELECT * FROM users WHERE email=\"" + email + "\"", function (err, rows) {
       if (err) throw err;
+
       if (rows.length > 0) {
         res.status(400).json({
           error: 'This email already exists.',
@@ -66,6 +64,7 @@ router.put('', async function (req, res, next) {
       } else {
         conn.query("SELECT * FROM users WHERE username=\"" + username + "\"", function (err, rows) {
           if (err) throw err;
+
           if (rows.length > 0) {
             res.status(400).json({
               error: 'This username already exists.',
@@ -77,8 +76,10 @@ router.put('', async function (req, res, next) {
               res.json(rows);
             });
           }
+
         });
       }
+
     });
   });
 });

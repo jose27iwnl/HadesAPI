@@ -7,6 +7,7 @@ const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const breakdownsRouter = require('./routes/breakdowns');
 const roomsRouter = require('./routes/rooms');
+const blocksRouter = require('./routes/blocks');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/breakdowns', breakdownsRouter);
 app.use('/rooms', roomsRouter);
+app.use('/blocks', blocksRouter);
 
 
 module.exports = app;
