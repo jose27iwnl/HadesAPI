@@ -5,7 +5,13 @@ const getConnection = require('../utils/mysql');
 
 router.get('', function(req, res, next) {
         getConnection(function(err, conn) {
-            conn.query("SELECT b.id, b.description, u.username, r.number, bl.description AS block FROM breakdowns b INNER JOIN users u ON u.id = b.id_user INNER JOIN room r ON r.id = b.id_room INNER JOIN blocks bl ON bl.id = r.id_block WHERE b.enabled = TRUE;", function(err, rows) {
+            conn.query("SELECT breakdown.id, reason.reason, breakdown.description, severity.severity, user.username, room.number, block.description AS block FROM breakdowns breakdown " +
+                "INNER JOIN users user ON user.id = breakdown.id_user " +
+                "INNER JOIN room room ON room.id = breakdown.id_room " +
+                "INNER JOIN blocks block ON block.id = room.id_block " +
+                "INNER JOIN reasons reason ON reason.id = breakdown.id_reason " +
+                "INNER JOIN severity severity ON severity.id = breakdown.id_severity " +
+                "WHERE breakdown.enabled = TRUE;", function(err, rows) {
                 if (err) throw err;
 
                 res.json(rows);
@@ -15,7 +21,7 @@ router.get('', function(req, res, next) {
 
 router.put('', function(req, res, next) {
     getConnection(function(err, conn) {
-        conn.query("INSERT INTO breakdowns (description, id_room, id_user) VALUES (?, ?, ?);", [req.body['description'], req.body['id_room'], req.body['id_user']], function(err, rows) {
+        conn.query("INSERT INTO breakdowns (description, id_reason, id_severity, id_room, id_user) VALUES (?, 1, 1, ?, ?);", [req.body['description'], req.body['id_room'], req.body['id_user']], function(err, rows) {
             if (err) throw err;
             res.json(rows);
         });
