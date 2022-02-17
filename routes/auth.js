@@ -25,13 +25,13 @@ router.get('', function(req, res, next) {
                     });
                 } else {
                     res.status(400).json({
-                        error: 'Password incorreta',
+                        error: 'Wrong password.',
                         type: 'password'
                     });
                 }
             } else {
                 res.status(400).json({
-                    error: 'Este email não existe',
+                    error: 'This email doesnt exist',
                     type: 'email'
                 });
             }
