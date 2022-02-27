@@ -21,7 +21,7 @@ router.get('', function(req, res, next) {
 
 router.put('', function(req, res, next) {
     getConnection(function(err, conn) {
-        conn.query("INSERT INTO breakdowns (description, id_reason, id_severity, id_room, id_user) VALUES (?, 1, 1, ?, ?);", [req.body['description'], req.body['id_room'], req.body['id_user']], function(err, rows) {
+        conn.query("INSERT INTO breakdowns (description, id_severity, id_reason, id_room, id_user) VALUES (?, ?, ?, ?, ?);", [req.body['description'], req.body['id_severity'], req.body['id_reason'], req.body['id_room'], req.body['id_user']], function(err, rows) {
             if (err) throw err;
             res.json(rows);
         });
