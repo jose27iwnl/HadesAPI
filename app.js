@@ -27,5 +27,7 @@ app.use('/blocks', blocksRouter);
 app.use('/severities', severitiesRouter);
 app.use('/reasons', reasonsRouter);
 
+app.listen(8089);
+
 
 module.exports = app;
